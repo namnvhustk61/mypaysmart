@@ -24,6 +24,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/login', login);
+
+app.use(function (req, res, next) {
+    if(ERR){
+      res.send(ERR);
+    }
+  next();
+});
 app.use(mid_check_jwt_token);
 
 app.use('/', indexRouter);
@@ -60,8 +67,10 @@ var db_config = {
   host     : '103.97.125.254',
   user     : 'namstork_admin',
   password : 'vietnam999999999',
-  database : 'namstork_mypaysmart'
+  database : 'namstork_mypaysmar'
 }
+
+var ERR ;
 
 var connectionMysqlDb;
 
@@ -70,8 +79,9 @@ function handleDisconnect() {
                                                     // the old one cannot be reused.
 
     connectionMysqlDb.connect(function(err) {              // The server is either down
-      if(err) {                                     // or restarting (takes a while sometimes).
-        console.log('error when connecting to db:', err);
+      if(err) {   
+        ERR = err.toString()                                  // or restarting (takes a while sometimes).
+        // console.log('error when connecting to db:', err);
         setTimeout(handleDisconnect, 5000); // We introduce a delay before attempting to reconnect,
         console.log("____NOT  CONNECTED MYSQL DB____");
       }else{
