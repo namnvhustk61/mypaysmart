@@ -85,6 +85,7 @@ function handleDisconnect() {
         setTimeout(handleDisconnect, 5000); // We introduce a delay before attempting to reconnect,
         console.log("____NOT  CONNECTED MYSQL DB____");
       }else{
+        ERR = null;
         console.log("____CONNECTED MYSQL DB____");
       }
                                            // to avoid a hot loop, and to allow our node script to
