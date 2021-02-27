@@ -26,7 +26,8 @@ router.post('/',  function(req, res){
     
     _user.login(function(err, row){
         if(err){
-            res.json(Result.create(Result.E_500, Strings.E_500_MESS, null));
+            // res.json(Result.create(Result.E_500, Strings.E_500_MESS, null));
+            res.json(Result.create(Result.E_500, err.toString(), null));
         }else{
             res.json(Result.create(Result.OK, Strings.OK_LOGIN, _user.toJSON()));
         }
