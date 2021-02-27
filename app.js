@@ -67,7 +67,7 @@ var db_config = {
   host     : '103.97.125.254',
   user     : 'namstork_admin',
   password : 'vietnam999999999',
-  database : 'namstork_mypaysmar'
+  database : 'namstork_mypaysmart'
 }
 
 var ERR ;
