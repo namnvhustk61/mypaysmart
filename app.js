@@ -6,6 +6,9 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var login = require('./routes/login.js');
+
+var mid_check_jwt_token = require('./routes/middleware/mid_check_jwt_token.js');
 
 var app = express();
 
@@ -18,6 +21,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+app.use('/login', login);
+app.use(mid_check_jwt_token);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -74,7 +81,7 @@ function handleDisconnect() {
     });                                     // process asynchronous requests in the meantime.
                                             // If you're also serving http, display a 503 error.
     connectionMysqlDb.on('error', function(err) {
-      console.log('db error', err);
+      // console.log('db error', err);
       if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
         handleDisconnect();                         // lost due to either server restart, or a
       } else {                                      // connnection idle timeout (the wait_timeout
