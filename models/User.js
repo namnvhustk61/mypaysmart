@@ -78,9 +78,9 @@ class User{
     }
 
     update2DB(callback){
-        var sql_query = `update ${this.name_table} set auth_jwt_token=?, fcm_token=? where user_name=?`;
+        var sql_query = `update ${this.name_table} set auth_jwt_token=?, fcm_token=?, date_late=? where user_name=?`;
         
-        var data_query = [this.auth_jwt_token, this.fcm_token, this.user_name];
+        var data_query = [this.auth_jwt_token, this.fcm_token, this.date_late, this.user_name];
 
         this.conDB.query(sql_query, data_query, callback);   
     }
@@ -104,6 +104,16 @@ class User{
         this.auth_jwt_token = md5.encrypt(str);
     }
 
+    create_date_late(){
+        var dateNow = Date.getTimeNow();
+        this.date_late = dateNow;
+    }
+
+    create_date_created(){
+        var dateNow = Date.getTimeNow();
+        this.date_created = dateNow;
+    }
+
 
    ///////////// Model Action///////////
 
@@ -113,9 +123,11 @@ class User{
                 callback(err, null);
             }else{
                 this.create_auth_jwt_token();
+                this.create_date_late();
                 if(value){
                     this.update2DB(callback);
                 }else{
+                    this.create_date_created();
                      this.add2DB(callback);
                 }
             }
