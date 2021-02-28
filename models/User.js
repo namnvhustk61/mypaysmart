@@ -29,7 +29,7 @@ class User{
    
     
     constructor(resBody){
-        this.conDB = require('../app.js').conDB;
+        this.conDB = require('../app.js').conDB();
         this.name_table = "USER_";
         this.user_id = resBody.user_id; // not null
         this.auth_jwt_token = resBody.auth_jwt_token; 

@@ -113,5 +113,7 @@ handleDisconnect();
 // --------- Exports -----------------------//
 module.exports = {
   app: app,
-  conDB: connectionMysqlDb,
+  conDB: function(){
+    return connectionMysqlDb;
+  },
 };
