@@ -1,0 +1,40 @@
+{
+	"info": {
+		"_postman_id": "81c41a01-857d-41cf-b1ea-a8f0864004a6",
+		"name": "_MyPaySmart",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "LOGIN",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_name\": \"nam@gmail.com\", // not null\r\n    \"device_id\": \"test_web_0\",    // not null\r\n    \"fcm_token\": \"test_web_0\",\r\n    \"full_name\": \"test_web_0\",\r\n    \"avatar_url\": \"test_web_0\",\r\n    \"email\": \"test_web_0\",\r\n    \"phone\": \"test_web_0\",\r\n    \"third_party_id\": \"test_web_0\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "https://mypaysmart.herokuapp.com/login",
+					"protocol": "https",
+					"host": [
+						"mypaysmart",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"login"
+					]
+				},
+				"description": "Login by google,  facebook"
+			},
+			"response": []
+		}
+	]
+}
